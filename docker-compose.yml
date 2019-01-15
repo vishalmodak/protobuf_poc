@@ -12,20 +12,19 @@ services:
       - protobuf_poc_protobuf
     tty: true
 
-  # loan:
-  #   build:
-  #     context: ./svc-loan
-  #     dockerfile: Dockerfile
-  #   image: svc-loan
-  #   container_name: svc-loan
-  #   ports:
-  #     - 8000:8080
-  #   networks:
-  #     - lss_poc_lss
-  #   environment:
-  #     - KAFKA_BROKER_URL=kafka:29092
-  #     - SCHEMA_REGISTRY_URL=http://schema-registry-host:8081
-  #   tty: true
+  loan:
+    build:
+      context: ./svc-loan
+      dockerfile: Dockerfile
+    image: svc-loan
+    container_name: svc-loan
+    ports:
+      - 8000:8080
+    networks:
+      - protobuf_poc_protobuf
+    environment:
+      - KAFKA_BROKER_URL=kafka:29092
+    tty: true
 
 networks:
   protobuf_poc_protobuf:
