@@ -1,0 +1,59 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.7'
+	}
+}
+
+
+plugins {
+  id "java"
+  id "eclipse"
+//  id "com.google.protobuf"
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.google.protobuf'
+
+group = 'com.lending.loan'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+protobuf {
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.4.0'
+        generatedFilesBaseDir = "$projectDir/src"
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'com.github.daniel-shuy:kafka-protobuf-serde:1.0.0'
+	implementation 'commons-io:commons-io:2.6'
+	compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.6.1'
+	compile group: 'com.googlecode.protobuf-java-format', name: 'protobuf-java-format', version: '1.4'
+	compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
+	
+	protobuf files('../protos/build/distributions/protos.tgz')
+    
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+bootJar {
+    baseName = 'svc-loan'
+    version = ''
+}

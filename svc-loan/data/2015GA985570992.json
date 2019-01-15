@@ -1,0 +1,21 @@
+{
+    "loan": {
+        "status": "current",
+        "calledDue": false,
+        "dateClosed": "",
+        "dateOpened": "2015-08-17",
+        "loanNumber": "2015GA985570992",
+        "daysPastDue": 0,
+        "currentOwner": "netcredit",
+        "transferFrom": "",
+        "sourceAccountNumber": "8147839",
+        "amountPastDueInCents": 0,
+        "currentBalanceInCents": 188966,
+        "lastPaymentContingent": false,
+        "transferEffectiveDate": "2015-08-15",
+        "calledDueAmountInCents": 0,
+        "oustandingBalanceCents": 188966,
+        "inCollectionBeforeClosed": false,
+        "originalLoanAmountInCents": 310000
+    }
+}
