@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "Enova";
+
+package com.lending.proto;
+
+message Payment {
+  bool paid = 1;
+  string datePaid = 2;
+  string loanNumber = 3;
+  int64 amoutInCents = 4;
+  string sourceAccountNumber = 5;
+  string sourcePaymentNumber = 6;
+  string sourceObligationNumber = 7;
+}

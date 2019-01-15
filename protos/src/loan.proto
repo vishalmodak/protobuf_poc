@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "Lending";
+
+package com.lending.proto;
+
+message Loan {
+  string status = 1;
+  bool calledDue = 2;
+  string dateClosed = 3;
+  string dateOpened = 4;
+  string loanNumber = 5;
+  int64 daysPastDue = 6;
+  string currentOwner = 7;
+  string transferFrom = 8;
+  string sourceAccountNumber = 9;
+  int64 amountPastDueInCents = 10;
+  int64 currentBalanceInCents = 11;
+  bool lastPaymentContingent = 12;
+  string transferEffectiveDate = 13;
+  int64 calledDueAmountInCents = 14;
+  int64 outstandingBalanceInCents = 15;
+  bool inCollectionBeforeClosed = 17;
+  int64 originalLoanAmountInCents = 18;
+}
