@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  json-generator:
+    build: ./docker/json-gen
+    image: json-data-generator
+    container_name: json-gen
+    volumes:
+      - ./docker/json-gen/logs:/json-data-generator/logs
+      - ./docker/json-gen/conf:/json-data-generator/conf
+    networks:
+      - lss_poc_lss
+    tty: true
+
+  loan:
+    build:
+      context: ./svc-loan-io
+      dockerfile: Dockerfile
+    image: svc-loan
+    container_name: svc-loan
+    ports:
+      - 8000:8080
+    networks:
+      - lss_poc_lss
+    environment:
+      - KAFKA_BROKER_URL=kafka:29092
+      - SCHEMA_REGISTRY_URL=http://schema-registry-host:8081
+    tty: true
+
+networks:
+  lss_poc_lss:
+    external: true
