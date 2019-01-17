@@ -26,19 +26,19 @@ services:
       - KAFKA_BROKER_URL=kafka:29092
     tty: true
 
-  aggregator:
-    build:
-      context: ./svc-aggregator
-      dockerfile: Dockerfile
-    image: svc-aggregator
-    container_name: svc-aggregator
-    networks:
-      - protobuf_poc_protobuf
-    environment:
-      - KAFKA_BROKER_URI=kafka:29092
-      - LOAN_TOPIC_NAME=loan
-      - PAYMENT_TOPIC_NAME=payment
-    tty: true
+  # aggregator:
+  #   build:
+  #     context: ./svc-aggregator
+  #     dockerfile: Dockerfile
+  #   image: svc-aggregator
+  #   container_name: svc-aggregator
+  #   networks:
+  #     - protobuf_poc_protobuf
+  #   environment:
+  #     - KAFKA_BROKER_URI=kafka:29092
+  #     - LOAN_TOPIC_NAME=loan
+  #     - PAYMENT_TOPIC_NAME=payment
+  #   tty: true
 
 networks:
   protobuf_poc_protobuf:
