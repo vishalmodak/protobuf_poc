@@ -33,9 +33,9 @@ public interface PaymentOrBuilder extends
       getLoanNumberBytes();
 
   /**
-   * <code>int64 amoutInCents = 4;</code>
+   * <code>int64 amountInCents = 4;</code>
    */
-  long getAmoutInCents();
+  long getAmountInCents();
 
   /**
    * <code>string sourceAccountNumber = 5;</code>

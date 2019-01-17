@@ -19,7 +19,7 @@ private static final long serialVersionUID = 0L;
     paid_ = false;
     datePaid_ = "";
     loanNumber_ = "";
-    amoutInCents_ = 0L;
+    amountInCents_ = 0L;
     sourceAccountNumber_ = "";
     sourcePaymentNumber_ = "";
     sourceObligationNumber_ = "";
@@ -72,7 +72,7 @@ private static final long serialVersionUID = 0L;
           }
           case 32: {
 
-            amoutInCents_ = input.readInt64();
+            amountInCents_ = input.readInt64();
             break;
           }
           case 42: {
@@ -194,13 +194,13 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int AMOUTINCENTS_FIELD_NUMBER = 4;
-  private long amoutInCents_;
+  public static final int AMOUNTINCENTS_FIELD_NUMBER = 4;
+  private long amountInCents_;
   /**
-   * <code>int64 amoutInCents = 4;</code>
+   * <code>int64 amountInCents = 4;</code>
    */
-  public long getAmoutInCents() {
-    return amoutInCents_;
+  public long getAmountInCents() {
+    return amountInCents_;
   }
 
   public static final int SOURCEACCOUNTNUMBER_FIELD_NUMBER = 5;
@@ -326,8 +326,8 @@ private static final long serialVersionUID = 0L;
     if (!getLoanNumberBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, loanNumber_);
     }
-    if (amoutInCents_ != 0L) {
-      output.writeInt64(4, amoutInCents_);
+    if (amountInCents_ != 0L) {
+      output.writeInt64(4, amountInCents_);
     }
     if (!getSourceAccountNumberBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, sourceAccountNumber_);
@@ -356,9 +356,9 @@ private static final long serialVersionUID = 0L;
     if (!getLoanNumberBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, loanNumber_);
     }
-    if (amoutInCents_ != 0L) {
+    if (amountInCents_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(4, amoutInCents_);
+        .computeInt64Size(4, amountInCents_);
     }
     if (!getSourceAccountNumberBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, sourceAccountNumber_);
@@ -391,8 +391,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getDatePaid());
     result = result && getLoanNumber()
         .equals(other.getLoanNumber());
-    result = result && (getAmoutInCents()
-        == other.getAmoutInCents());
+    result = result && (getAmountInCents()
+        == other.getAmountInCents());
     result = result && getSourceAccountNumber()
         .equals(other.getSourceAccountNumber());
     result = result && getSourcePaymentNumber()
@@ -417,9 +417,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getDatePaid().hashCode();
     hash = (37 * hash) + LOANNUMBER_FIELD_NUMBER;
     hash = (53 * hash) + getLoanNumber().hashCode();
-    hash = (37 * hash) + AMOUTINCENTS_FIELD_NUMBER;
+    hash = (37 * hash) + AMOUNTINCENTS_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getAmoutInCents());
+        getAmountInCents());
     hash = (37 * hash) + SOURCEACCOUNTNUMBER_FIELD_NUMBER;
     hash = (53 * hash) + getSourceAccountNumber().hashCode();
     hash = (37 * hash) + SOURCEPAYMENTNUMBER_FIELD_NUMBER;
@@ -561,7 +561,7 @@ private static final long serialVersionUID = 0L;
 
       loanNumber_ = "";
 
-      amoutInCents_ = 0L;
+      amountInCents_ = 0L;
 
       sourceAccountNumber_ = "";
 
@@ -594,7 +594,7 @@ private static final long serialVersionUID = 0L;
       result.paid_ = paid_;
       result.datePaid_ = datePaid_;
       result.loanNumber_ = loanNumber_;
-      result.amoutInCents_ = amoutInCents_;
+      result.amountInCents_ = amountInCents_;
       result.sourceAccountNumber_ = sourceAccountNumber_;
       result.sourcePaymentNumber_ = sourcePaymentNumber_;
       result.sourceObligationNumber_ = sourceObligationNumber_;
@@ -650,8 +650,8 @@ private static final long serialVersionUID = 0L;
         loanNumber_ = other.loanNumber_;
         onChanged();
       }
-      if (other.getAmoutInCents() != 0L) {
-        setAmoutInCents(other.getAmoutInCents());
+      if (other.getAmountInCents() != 0L) {
+        setAmountInCents(other.getAmountInCents());
       }
       if (!other.getSourceAccountNumber().isEmpty()) {
         sourceAccountNumber_ = other.sourceAccountNumber_;
@@ -856,28 +856,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private long amoutInCents_ ;
+    private long amountInCents_ ;
     /**
-     * <code>int64 amoutInCents = 4;</code>
+     * <code>int64 amountInCents = 4;</code>
      */
-    public long getAmoutInCents() {
-      return amoutInCents_;
+    public long getAmountInCents() {
+      return amountInCents_;
     }
     /**
-     * <code>int64 amoutInCents = 4;</code>
+     * <code>int64 amountInCents = 4;</code>
      */
-    public Builder setAmoutInCents(long value) {
+    public Builder setAmountInCents(long value) {
       
-      amoutInCents_ = value;
+      amountInCents_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int64 amoutInCents = 4;</code>
+     * <code>int64 amountInCents = 4;</code>
      */
-    public Builder clearAmoutInCents() {
+    public Builder clearAmountInCents() {
       
-      amoutInCents_ = 0L;
+      amountInCents_ = 0L;
       onChanged();
       return this;
     }

@@ -19,6 +19,11 @@ public final class Enova {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_lending_proto_Payment_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_lending_proto_PaymentList_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_lending_proto_PaymentList_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -29,11 +34,13 @@ public final class Enova {
   static {
     java.lang.String[] descriptorData = {
       "\n\024protos/payment.proto\022\021com.lending.prot" +
-      "o\"\255\001\n\007Payment\022\014\n\004paid\030\001 \001(\010\022\020\n\010datePaid\030" +
-      "\002 \001(\t\022\022\n\nloanNumber\030\003 \001(\t\022\024\n\014amoutInCent" +
-      "s\030\004 \001(\003\022\033\n\023sourceAccountNumber\030\005 \001(\t\022\033\n\023" +
-      "sourcePaymentNumber\030\006 \001(\t\022\036\n\026sourceOblig" +
-      "ationNumber\030\007 \001(\tB\tB\005EnovaP\001b\006proto3"
+      "o\"\256\001\n\007Payment\022\014\n\004paid\030\001 \001(\010\022\020\n\010datePaid\030" +
+      "\002 \001(\t\022\022\n\nloanNumber\030\003 \001(\t\022\025\n\ramountInCen" +
+      "ts\030\004 \001(\003\022\033\n\023sourceAccountNumber\030\005 \001(\t\022\033\n" +
+      "\023sourcePaymentNumber\030\006 \001(\t\022\036\n\026sourceObli" +
+      "gationNumber\030\007 \001(\t\";\n\013PaymentList\022,\n\010pay" +
+      "ments\030\001 \003(\0132\032.com.lending.proto.PaymentB" +
+      "\tB\005EnovaP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -52,7 +59,13 @@ public final class Enova {
     internal_static_com_lending_proto_Payment_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_lending_proto_Payment_descriptor,
-        new java.lang.String[] { "Paid", "DatePaid", "LoanNumber", "AmoutInCents", "SourceAccountNumber", "SourcePaymentNumber", "SourceObligationNumber", });
+        new java.lang.String[] { "Paid", "DatePaid", "LoanNumber", "AmountInCents", "SourceAccountNumber", "SourcePaymentNumber", "SourceObligationNumber", });
+    internal_static_com_lending_proto_PaymentList_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_com_lending_proto_PaymentList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_lending_proto_PaymentList_descriptor,
+        new java.lang.String[] { "Payments", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
