@@ -58,7 +58,7 @@ public class LoanListener {
         }
     }
 
-    @KafkaListener(id="loanlistener", topics="${kafka.topic.consume}", groupId = "loan", containerFactory = "loanListenerFactory")
+    @KafkaListener(id="loanlistener", topics="${loan.topic.consume}", groupId = "loan", containerFactory = "loanListenerFactory")
     public void processMessage(String message) {
         log.info("LoanNumber: " + message);
         String loanNumber = JsonPath.read(message, "$.loan.loanNumber");

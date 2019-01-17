@@ -20,7 +20,7 @@ public class LoanPublisher {
     @Autowired
     private KafkaTemplate<String, Loan> kafkaTemplate;
     
-    @Value("${kafka.topic.produce}")
+    @Value("${loan.topic.produce}")
     private String producerTopic;
 
     public void send(String payload) {

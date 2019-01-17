@@ -8,10 +8,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :paid, :bool, 1
     optional :datePaid, :string, 2
     optional :loanNumber, :string, 3
-    optional :amoutInCents, :int64, 4
+    optional :amountInCents, :int64, 4
     optional :sourceAccountNumber, :string, 5
     optional :sourcePaymentNumber, :string, 6
     optional :sourceObligationNumber, :string, 7
+  end
+  add_message "com.lending.proto.PaymentList" do
+    repeated :payments, :message, 1, "com.lending.proto.Payment"
   end
 end
 
@@ -19,6 +22,7 @@ module Com
   module Lending
     module Proto
       Payment = Google::Protobuf::DescriptorPool.generated_pool.lookup("com.lending.proto.Payment").msgclass
+      PaymentList = Google::Protobuf::DescriptorPool.generated_pool.lookup("com.lending.proto.PaymentList").msgclass
     end
   end
 end

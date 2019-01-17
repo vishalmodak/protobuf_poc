@@ -48,7 +48,7 @@ public class PaymentListener {
        return factory;
     }
 
-    @KafkaListener(id="paymentlistener", topics="payment", groupId = "payment", containerFactory = "paymentListenerFactory")
+    @KafkaListener(id="paymentlistener", topics="${payment.topic.consume}", groupId = "payment", containerFactory = "paymentListenerFactory")
     public void processMessage(ConsumerRecord<String, String> message) {
         log.info("Payment: " + message.value());
     }

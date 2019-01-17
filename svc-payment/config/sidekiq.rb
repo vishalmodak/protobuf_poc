@@ -10,5 +10,7 @@ production:
     :concurrency: 25
 staging:
     :concurrency: 15
-test:
+development:
     :concurrency: 20
+
+:schedule:
