@@ -23,7 +23,7 @@ class PaymentConsumer < ApplicationConsumer
       )
     end
 
-    DeliveryBoy.deliver(paymentList, topic: "payment")
+    DeliveryBoy.deliver(Com::Lending::Proto::PaymentList.encode(paymentList), topic: "payment")
   end
 
 end
