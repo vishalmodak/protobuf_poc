@@ -94,12 +94,12 @@ func startPaymentConsumer(config *sarama.Config, topic string, producerURL []str
 }
 
 func readPaymentProto(encodedMsg []byte) {
-	payment := new(com_lending_proto.Payment)
-	err := proto.Unmarshal(encodedMsg, payment)
+	paymentList := new(com_lending_proto.PaymentList)
+	err := proto.Unmarshal(encodedMsg, paymentList)
 	if err != nil {
 		logger.Errorf("unmarshaling error: %s", err)
 	}
-	logger.Printf("%#v", payment)
+	logger.Printf("%#v\n\n", paymentList)
 }
 
 func startLoanConsumer(config *sarama.Config, topic string, producerURL []string) {

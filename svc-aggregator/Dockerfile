@@ -1,4 +1,4 @@
-FROM golang:1.9-alpine as builder
+FROM golang:1.10-alpine as builder
 RUN apk add --update glide git
 ENV appDir=/go/src/protobuf_poc/svc-aggregator
 RUN mkdir -p $appDir
