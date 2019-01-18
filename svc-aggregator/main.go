@@ -7,6 +7,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/subosito/gotenv"
 	lg "log"
+	"net/http"
 	"os"
 	"protobuf_poc/svc-aggregator/generated-protos"
 	"strings"
@@ -19,22 +20,28 @@ var (
 	logLevel     string
 	logger       *log.Logger
 	config       *sarama.Config
+	httpAddr     string
+	loanURL      string
 )
 
 func init() {
-	gotenv.Load()
+	gotenv.Load(".env")
+
 	logger = log.New()
-	// log.SetOutput(os.Stdout)
 	logger.SetLevel(log.DebugLevel)
 
 	loanTopic = os.Getenv("LOAN_TOPIC_NAME")
-	logger.Debug("LOAN_TOPIC_NAME: ", loanTopic)
+	logger.Debug("LOAN_TOPIC_NAME: ", os.Getenv("LOAN_TOPIC_NAME"))
 	paymentTopic = os.Getenv("PAYMENT_TOPIC_NAME")
 	logger.Debug("PAYMENT_TOPIC_NAME: ", paymentTopic)
 	brokerURI = os.Getenv("KAFKA_BROKER_URI")
 	logger.Debug("KAFKA_BROKER_URI: ", brokerURI)
+	httpAddr = os.Getenv("ADDR")
+	logger.Debug("ADDR: ", httpAddr)
+	loanURL = os.Getenv("GETLOAN_URL")
+	logger.Debug("GETLOAN_URL: ", loanURL)
 
-	config := sarama.NewConfig()
+	config = sarama.NewConfig()
 	// config.Producer.Partitioner = sarama.NewManualPartitioner
 	config.Consumer.Return.Errors = true
 	//verbose debugging (comment this line to disabled verbose sarama logging)
@@ -53,7 +60,14 @@ func main() {
 
 	go startLoanConsumer(config, loanTopic, producerURL)
 
-	startPaymentConsumer(config, paymentTopic, producerURL)
+	go startPaymentConsumer(config, paymentTopic, producerURL)
+
+	// Start the server
+	logger.Printf("Starting server on :%s", httpAddr)
+	err := http.ListenAndServe(httpAddr, setupRoutes())
+	if err != nil {
+		logger.Fatalf("Failure starting server: %s", err)
+	}
 	logger.Info("Aggregator Service started....")
 }
 
