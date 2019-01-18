@@ -15,7 +15,7 @@ class PaymentConsumer < ApplicationConsumer
       paymentList.payments << Com::Lending::Proto::Payment.new(
           paid: payment['paid'],
           datePaid: !payment['datePaid'].nil? ? payment['datePaid'] : "",
-          amountInCents: payment['amoutInCents'].to_i,
+          amountInCents: payment['amountInCents'].to_i,
           loanNumber: payment['loanNumber'],
           sourceAccountNumber: payment['sourceAccountNumber'],
           sourcePaymentNumber: payment['sourcePaymentNumber'],
