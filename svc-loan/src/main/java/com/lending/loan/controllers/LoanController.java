@@ -1,10 +1,10 @@
 package com.lending.loan.controllers;
 
 import java.io.ByteArrayInputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.assertj.core.util.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,7 @@ public class LoanController {
         restTemplate.getMessageConverters().add(new ProtobufHttpMessageConverter());
         
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Lists.list((MediaType.valueOf("application/x-protobuf"))));
+        headers.setAccept(Arrays.asList((MediaType.valueOf("application/x-protobuf"))));
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
         
         Map<String, String> params = new HashMap<>();
