@@ -1,24 +1,27 @@
-# README
+# Payment Service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This service uses Racecar to consume & send messages to Kafka
 
-Things you may want to cover:
+## Generating Ruby models from protos
 
-* Ruby version
+```
+bundle exec rake generate_proto
+```
 
-* System dependencies
+This extracts the `.proto` files from `domain-protos/build/distributions/domain-protos.tgz` and generates the corresponding Ruby models.
+The Ruby model classes are created in `lib/gen/protos`.
 
-* Configuration
+## Running Consumers
 
-* Database creation
+In `app/consumer`, there are 2 classes -  LoanConsumer & PaymentProducer
 
-* Database initialization
+LoanConsumer - Consumes loan messages from `loan` topic & prints to console
+PaymentProducer - Consumer loan number from `payment_intake` topic & publishes the list of payments to `payment` topic
 
-* How to run the test suite
+Each consumer or producer is run as a separate thread by Racecar
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle exec racecar LoanConsumer
 
-* Deployment instructions
-
-* ...
+bundle exec racecar PaymentProducer
+```

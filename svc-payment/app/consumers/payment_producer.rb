@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PaymentConsumer < ApplicationConsumer
+class PaymentProducer < ApplicationConsumer
   subscribes_to "payment_intake", start_from_beginning: false
 
   def process(message)
