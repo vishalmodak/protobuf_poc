@@ -2,7 +2,7 @@ require 'rubygems/package'
 require 'zlib'
 
 TAR_LONGLINK = '././@LongLink'
-protos_tgz_archive = '../protos/build/distributions/protos.tgz'
+protos_tgz_archive = '../domain-protos/build/distributions/domain-protos.tgz'
 destination = 'tmp/'
 protos_gen_dir = 'lib/gen/protos/'
 

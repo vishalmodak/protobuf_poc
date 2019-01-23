@@ -4,6 +4,7 @@ class PaymentConsumer < ApplicationConsumer
   subscribes_to "payment_intake", start_from_beginning: false
 
   def process(message)
+    puts message.value
     data_hash = JSON.parse(message.value)
     loan_num = JsonPath.on(data_hash, '$.loan.loanNumber')
 
@@ -22,7 +23,7 @@ class PaymentConsumer < ApplicationConsumer
           sourceObligationNumber: payment['sourceObligationNumber']
       )
     end
-
+    puts paymentList
     DeliveryBoy.deliver(Com::Lending::Proto::PaymentList.encode(paymentList), topic: "payment")
   end
 
