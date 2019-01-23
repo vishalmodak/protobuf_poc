@@ -24,7 +24,7 @@ repositories {
 
 distributions {
     main {
-        baseName = 'protos'
+        baseName = 'domain-protos'
         contents {
             from 'src/'
         }
