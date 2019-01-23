@@ -9,6 +9,6 @@ class PaymentProducerWorker
     paymentList = Com::Lending::Proto::PaymentList.new
     paymentList.payments << payment
 
-    DeliveryBoy.deliver(Com::Lending::Proto::PaymentList.encode(paymentList), topic: "payment")
+    DeliveryBoy.deliver(Com::Lending::Proto::Payment.encode(payment), topic: "payment")
   end
 end
