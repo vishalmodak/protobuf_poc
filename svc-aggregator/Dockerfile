@@ -1,5 +1,5 @@
-FROM golang:1.10-alpine as builder
-RUN apk add --update glide git
+FROM golang:1.10-stretch as builder
+RUN apt-get install git
 ENV appDir=/go/src/protobuf_poc/svc-aggregator
 RUN mkdir -p $appDir
 WORKDIR $appDir
@@ -8,10 +8,10 @@ RUN go get .
 RUN go build .
 CMD ["/go/src/protobuf_poc/svc-aggregator/svc-aggregator"]
 
-FROM alpine:latest
+FROM golang:1.10-stretch
 ENV TZ Etc/GMT
-RUN apk add --update tzdata
-RUN apk --no-cache add ca-certificates
+RUN apt-get install tzdata
+#RUN apk --no-cache add ca-certificates
 WORKDIR /root
 COPY --from=builder /go/src/protobuf_poc/svc-aggregator/svc-aggregator .
 CMD ["./svc-aggregator"]
