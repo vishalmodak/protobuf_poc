@@ -31,6 +31,8 @@ services:
       context: ./svc-aggregator
       dockerfile: Dockerfile
     image: svc-aggregator
+    ports:
+      - 9000:9000
     container_name: svc-aggregator
     networks:
       - protobuf_poc_protobuf
@@ -38,6 +40,52 @@ services:
       - KAFKA_BROKER_URI=kafka:29092
       - LOAN_TOPIC_NAME=loan
       - PAYMENT_TOPIC_NAME=payment
+    tty: true
+
+  svc-payment:
+    build:
+      context: ./svc-payment
+      dockerfile: Dockerfile
+    image: svc-payment
+    container_name: svc-payment
+    networks:
+      - protobuf_poc_protobuf
+    ports:
+      - 3000:3000
+    environment:
+      - KAFKA_BROKER_ADDR=kafka:29092
+      - GET_LOAN_URL=http://loan:8000/loan/
+      - LOAN_TOPIC_CONSUME=loan
+      - PAYMENT_TOPIC_CONSUME=payment_intake
+      - PAYMENT_TOPIC_PRODUCE=payment
+    tty: true
+
+  loan_consumer:
+    build:
+      context: ./svc-payment
+      dockerfile: Dockerfile
+    image: svc-payment
+    container_name: racecar_loan_consumer
+    command: ["bundle", "exec", "racecar", "LoanConsumer"]
+    networks:
+      - protobuf_poc_protobuf
+    environment:
+      - KAFKA_BROKER_ADDR=kafka:29092
+      - GET_LOAN_URL=http://loan:8000/loan/
+    tty: true
+
+  payment_producer:
+    build:
+      context: ./svc-payment
+      dockerfile: Dockerfile
+    image: svc-payment
+    container_name: racecar_payment_producer
+    command: ["bundle", "exec", "racecar", "PaymentProducer"]
+    networks:
+      - protobuf_poc_protobuf
+    environment:
+      - KAFKA_BROKER_ADDR=kafka:29092
+      - GET_LOAN_URL=http://loan:8000/loan/
     tty: true
 
 networks:

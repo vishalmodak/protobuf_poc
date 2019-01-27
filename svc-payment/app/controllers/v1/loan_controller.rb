@@ -9,7 +9,7 @@ module V1
         faraday.adapter :net_http
       end
 
-      url = "http://localhost:8080/loan/" + params[:loan_number]
+      url = ENV['GET_LOAN_URL'] + params[:loan_number]
 
       response = conn.get do |req|
         req.url url

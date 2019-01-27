@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PaymentProducer < ApplicationConsumer
-  subscribes_to "payment_intake", start_from_beginning: false
+  subscribes_to ENV['PAYMENT_TOPIC_CONSUME'], start_from_beginning: false
 
   def process(message)
     puts message.value
@@ -24,7 +24,7 @@ class PaymentProducer < ApplicationConsumer
       )
     end
     puts paymentList
-    DeliveryBoy.deliver(Com::Lending::Proto::PaymentList.encode(paymentList), topic: "payment")
+    DeliveryBoy.deliver(Com::Lending::Proto::PaymentList.encode(paymentList), topic: ENV['PAYMENT_TOPIC_PRODUCE'])
   end
 
 end

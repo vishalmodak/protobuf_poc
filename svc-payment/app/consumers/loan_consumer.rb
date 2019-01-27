@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LoanConsumer < ApplicationConsumer
-  subscribes_to "loan", start_from_beginning: false
+  subscribes_to ENV['LOAN_TOPIC_CONSUME'], start_from_beginning: false
 
   def process(message)
     puts message.value

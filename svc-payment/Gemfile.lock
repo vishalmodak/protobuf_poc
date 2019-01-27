@@ -54,6 +54,10 @@ GEM
       king_konf (~> 0.2)
       ruby-kafka (~> 0.5)
     digest-crc (0.4.1)
+    dotenv (2.6.0)
+    dotenv-rails (2.6.0)
+      dotenv (= 2.6.0)
+      railties (>= 3.2, < 6.0)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
@@ -210,6 +214,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   delivery_boy
+  dotenv-rails
   faraday
   google-protobuf
   json
@@ -226,7 +231,7 @@ DEPENDENCIES
   waterdrop
 
 RUBY VERSION
-   ruby 2.4.2p198
+   ruby 2.4.5p335
 
 BUNDLED WITH
-   1.16.1
+   2.0.1
