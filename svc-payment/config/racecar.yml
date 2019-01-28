@@ -10,7 +10,6 @@ development:
 test:
   <<: *common
   brokers:
-    - localhost:9092
 
 production:
   <<: *common

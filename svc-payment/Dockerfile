@@ -1,15 +1,24 @@
 FROM ruby:2.4-slim
 
-RUN apt-get update && apt-get install -y -f build-essential nodejs libpq-dev
+RUN apt-get update && apt-get install -y -f build-essential nodejs libpq-dev protobuf-compiler
+
+#copy protos from domain_protos images
+RUN mkdir -p /domain-protos/build/distributions/
+COPY --from=domain_protos /home/gradle/app/build/distributions/domain-protos.tgz /domain-protos/build/distributions/
+
+RUN gem install bundler -v 2.0.1
 
 RUN mkdir /app
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler -v 2.0.0.pre1
-RUN bundle install --binstubs
+RUN bundle install
 
 COPY . .
+
+#generate ruby classes from *.proto files
+RUN mkdir -p tmp
+RUN bundle exec rake generate_proto
 
 EXPOSE 3000
 

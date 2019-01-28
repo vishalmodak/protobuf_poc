@@ -32,7 +32,7 @@ task :generate_proto do
 
   FileUtils.mkdir_p protos_gen_dir, :mode => 0755, :verbose => false
 
-  system("protoc tmp/protos/*.proto --ruby_out=#{protos_gen_dir} -I tmp/protos")
+  system("protoc tmp/domain-protos/*.proto --ruby_out=#{protos_gen_dir} -I tmp/domain-protos")
 end
 
 task :clean do
