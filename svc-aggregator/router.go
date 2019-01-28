@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	mw "git.enova.com/go/mw"
 	"github.com/golang/protobuf/proto"
 	"github.com/gorilla/mux"
 	"net/http"
@@ -29,7 +28,6 @@ func setupRoutes() *mux.Router {
 		logger.Warn(err)
 	}
 
-	router.Use(mw.ContentType("application/json"))
 	return router
 }
 func lookupLoan(w http.ResponseWriter, r *http.Request) {
