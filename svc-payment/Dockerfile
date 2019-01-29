@@ -1,6 +1,6 @@
 FROM ruby:2.4-slim
 
-RUN apt-get update && apt-get install -y -f build-essential nodejs libpq-dev protobuf-compiler
+RUN apt-get update && apt-get install -y -f build-essential nodejs libpq-dev protobuf-compiler iputils-ping
 
 #copy protos from domain_protos images
 RUN mkdir -p /domain-protos/build/distributions/

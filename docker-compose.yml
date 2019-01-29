@@ -33,6 +33,7 @@ services:
       - protobuf_poc_protobuf
     environment:
       - KAFKA_BROKER_URL=kafka:29092
+      - PAYMENT_SERVICE_HOST=http://payment:3000
     tty: true
 
   aggregator:
@@ -57,13 +58,15 @@ services:
       dockerfile: Dockerfile
     image: svc-payment
     container_name: svc-payment
+    links:
+      - loan
     networks:
       - protobuf_poc_protobuf
     ports:
       - 3000:3000
     environment:
       - KAFKA_BROKER_ADDR=kafka:29092
-      - GET_LOAN_URL=http://loan:8000/loan/
+      - GET_LOAN_URL=http://loan:8080/loan/
     tty: true
 
   loan_consumer:
