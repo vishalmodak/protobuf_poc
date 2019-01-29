@@ -15,7 +15,9 @@ FROM java:8-alpine
 ENV KAFKA_BROKER_URL=localhost:9092 \
     LOAN_CONSUME_TOPIC=loan_intake \
     LOAN_PUBLISH_TOPIC=loan \
-    PAYMENT_CONSUME_TOPIC=payment
+    PAYMENT_CONSUME_TOPIC=payment \
+    PAYMENT_SERVICE_HOST=http://localhost:3000
+
 COPY --from=builder /home/gradle/app/build/libs/svc-loan.jar .
 COPY --from=builder /home/gradle/app/data ./data
 CMD ["java", \
@@ -24,6 +26,7 @@ CMD ["java", \
             "-Dloan.topic.consume=${LOAN_CONSUME_TOPIC}", \
             "-Dloan.topic.produce=${LOAN_PUBLISH_TOPIC}", \
             "-Dpayment.topic.produce=${PAYMENT_CONSUME_TOPIC}", \
+            "-Dservice.payments.uri=${PAYMENT_SERVICE_HOST}", \
             "-jar", \
             "svc-loan.jar"]
 EXPOSE 8080

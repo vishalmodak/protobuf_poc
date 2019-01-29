@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -28,12 +29,15 @@ import com.lending.proto.PaymentList;
 
 @RestController
 public class LoanController {
-    
+
     private static final Logger log = LoggerFactory.getLogger(LoanController.class);
-    
+
     @Autowired
     private LoanRepository loanRepository;
-    
+
+    @Value("${service.payments.uri}")
+    private String paymentServiceURI;
+
     @RequestMapping(value="/loan", method=RequestMethod.GET, produces={"text/plain"})
     public String index(@PathVariable String loanNumber) {
         return "Welcome to Loan Service...!!";
@@ -53,24 +57,24 @@ public class LoanController {
         Loan loan = loanBuilder.build();
         return loan;
     }
-    
+
     @RequestMapping(value="/loan/payments/{loanNumber}", method=RequestMethod.GET, produces={"application/json","application/x-protobuf"})
     public PaymentList lookupPayments(@PathVariable String loanNumber) {
-        String paymentURI = "http://localhost:3000/v1/payments/{loanNumber}";
-        
+        String getPaymentsURI = paymentServiceURI + "/v1/payments/{loanNumber}";
+
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new ProtobufHttpMessageConverter());
-        
+
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList((MediaType.valueOf("application/x-protobuf"))));
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-        
+
         Map<String, String> params = new HashMap<>();
         params.put("loanNumber", loanNumber);
-        
-        ResponseEntity<PaymentList> response = restTemplate.exchange(paymentURI, HttpMethod.GET, entity, PaymentList.class, params);
+
+        ResponseEntity<PaymentList> response = restTemplate.exchange(getPaymentsURI, HttpMethod.GET, entity, PaymentList.class, params);
         log.info("Loan: " + response.getBody());
-        
+
         return response.getBody();
     }
 }
