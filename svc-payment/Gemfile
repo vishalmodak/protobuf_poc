@@ -36,6 +36,7 @@ gem 'json'
 gem 'jsonpath'
 gem 'google-protobuf'
 gem 'faraday'
+gem 'statsd-instrument'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
