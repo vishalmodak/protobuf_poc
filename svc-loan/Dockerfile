@@ -16,7 +16,8 @@ ENV KAFKA_BROKER_URL=localhost:9092 \
     LOAN_CONSUME_TOPIC=loan_intake \
     LOAN_PUBLISH_TOPIC=loan \
     PAYMENT_CONSUME_TOPIC=payment \
-    PAYMENT_SERVICE_HOST=http://localhost:3000
+    PAYMENT_SERVICE_HOST=http://localhost:3000 \
+    STATSD_SERVER_HOST=localhost
 
 COPY --from=builder /home/gradle/app/build/libs/svc-loan.jar .
 COPY --from=builder /home/gradle/app/data ./data
@@ -27,6 +28,7 @@ CMD ["java", \
             "-Dloan.topic.produce=${LOAN_PUBLISH_TOPIC}", \
             "-Dpayment.topic.produce=${PAYMENT_CONSUME_TOPIC}", \
             "-Dservice.payments.uri=${PAYMENT_SERVICE_HOST}", \
+            "-Dmanagement.metrics.export.statsd.host=${STATSD_SERVER_HOST}", \
             "-jar", \
             "svc-loan.jar"]
 EXPOSE 8080

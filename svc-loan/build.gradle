@@ -41,7 +41,9 @@ repositories {
 }
 
 dependencies {
-  compile ("org.springframework.boot:spring-boot-starter-web")
+    compile "io.micrometer:micrometer-registry-statsd:1.0.5"
+    compile group: 'org.pcollections', name: 'pcollections', version: '3.0.3'
+    compile ("org.springframework.boot:spring-boot-starter-web")
 	compile 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'com.github.daniel-shuy:kafka-protobuf-serde:1.0.0'
