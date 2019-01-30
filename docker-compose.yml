@@ -34,6 +34,7 @@ services:
     environment:
       - KAFKA_BROKER_URL=kafka:29092
       - PAYMENT_SERVICE_HOST=http://payment:3000
+      - STATSD_SERVER_HOST=grafana.dev.enova.com
     tty: true
 
   aggregator:
@@ -67,6 +68,7 @@ services:
     environment:
       - KAFKA_BROKER_ADDR=kafka:29092
       - GET_LOAN_URL=http://loan:8080/loan/
+      - STATSD_SERVER=grafana.dev.enova.com:8125
     tty: true
 
   loan_consumer:
