@@ -22,7 +22,7 @@ import com.lending.proto.PaymentList;
 @Service
 public class PaymentListener {
     
-    private static final Logger log = LoggerFactory.getLogger(LoanListener.class);
+    private static final Logger log = LoggerFactory.getLogger(PaymentListener.class);
     
     @Value("${spring.kafka.bootstrap-servers}")
     private String brokerAddress;

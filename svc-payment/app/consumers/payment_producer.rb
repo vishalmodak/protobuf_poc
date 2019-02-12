@@ -24,7 +24,7 @@ class PaymentProducer < ApplicationConsumer
       )
     end
     puts paymentList
-    DeliveryBoy.deliver(Com::Lending::Proto::PaymentList.encode(paymentList), topic: ENV['PAYMENT_TOPIC_PRODUCE'])
+    DeliveryBoy.deliver(Com::Lending::Proto::PaymentList.encode(paymentList), topic: ENV['PAYMENT_TOPIC_PRODUCE'], key: loan_num.first)
   end
 
 end
