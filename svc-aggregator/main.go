@@ -58,9 +58,9 @@ func main() {
 		producerURL = append(producerURL, brokerURI)
 	}
 
-	go startLoanConsumer(config, loanTopic, producerURL)
-
-	go startPaymentConsumer(config, paymentTopic, producerURL)
+	// go startLoanConsumer(config, loanTopic, producerURL)
+	//
+	// go startPaymentConsumer(config, paymentTopic, producerURL)
 
 	// Start the server
 	logger.Printf("Starting server on :%s", httpAddr)
