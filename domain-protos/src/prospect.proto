@@ -1,9 +1,10 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_outer_classname = "Lending";
 
 package com.lending.proto;
+
+import "google/protobuf/any.proto";
 
 message Prospect {
   int64 prospectId = 1;
@@ -11,6 +12,7 @@ message Prospect {
     Business business = 2;
     Person person = 3;
   }
+  google.protobuf.Any anyProspect = 4;
 }
 
 message Business {
