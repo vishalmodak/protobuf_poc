@@ -103,7 +103,7 @@ GEM
     google-protobuf (3.6.1)
     i18n (1.5.2)
       concurrent-ruby (~> 1.0)
-    json (2.1.0)
+    json (2.3.0)
     jsonpath (0.9.9)
       multi_json
       to_regexp (~> 0.2.1)
